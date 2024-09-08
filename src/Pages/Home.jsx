@@ -4,28 +4,29 @@ import Navigation_bar from "../Components/Navbar";
 import React, { useEffect, useState } from "react";
 import Side_tab from "../Components/Side_tab";
 import Card_home from "../Components/Cards";
-import getUsers from "../Services/getUsers";
+import getProducts from "../Services/getProducts"
+
 
 export const Home = () => {
 
-  const [users,setUsers]=useState([]);
+  const [products,setProducts]=useState([]);
 
   useEffect(()=>{
-    const fetchUsers= async()=>{
+    const fetchProducts= async()=>{
       try {
-        const response=await getUsers();
-        setUsers(response)
+        const response=await getProducts();
+        setProducts(response)
       } catch (error) {
-        console.error("Error fetching users",error)
+        console.error("Error fetching Products",error)
       }
     }
-    fetchUsers()
+    fetchProducts()
   },[])
 
   let loadCards =() => {
     
-    if (users!=[]) {
-      return users.map((user, index) => <Card_home name={user.name} email={user.email} key={index} />);
+    if (products!=[]) {
+      return products.map((product) => <Card_home name={product.name} category={product.category} product={product} key={product.id} />);
     }
   };
 

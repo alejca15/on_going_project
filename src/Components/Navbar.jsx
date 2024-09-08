@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 function Navigation_bar() {
   return (
-    <Navbar expand="lg" style={{backgroundColor:"rgb(250, 250, 250)"}} className="bg-body-tertiary">
+    <Navbar expand="lg"  className="bg-body-tertiary">
       <Container fluid>
         <Navbar.Brand style={{fontSize: "xx-large", color: "rgb(237, 151, 165)"}}>SweetThings</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -46,7 +46,7 @@ function Navigation_bar() {
               className="me-2"
               aria-label="Search"
             />
-            <Button variant="outline-success">Buscar</Button>
+            <Button variant="outline-success" id="navbarBtn" >Buscar</Button>
           </Form>
         </Navbar.Collapse>
       </Container>

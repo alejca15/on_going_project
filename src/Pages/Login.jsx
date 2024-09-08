@@ -6,7 +6,6 @@ function Form_login() {
   return (
     <div id="form_login">
       <FormL />
-
       <div id="footer_cont">
         <Footer />
       </div>

@@ -33,7 +33,20 @@
       "phone": "61647912"
     }
   ],
+  "products": [
+    {
+      "id": "7435",
+      "name": "Palomitas de Mantequilla",
+      "category": "Salados",
+      "quantity": "1"
+    }
+  ],
   "car": [
-
+    {
+      "id": "7435",
+      "name": "Palomitas de Mantequilla",
+      "category": "Salados",
+      "quantity": 1
+    }
   ]
 }

@@ -1,5 +1,6 @@
+
 #home_body{
-    min-height: auto;
+    height: 100vh;
     display: grid;
     grid-template: 73px 1fr 8px/20% 60% 20%;
 }
@@ -12,7 +13,21 @@
     grid-column: 1/4;
     grid-row: 3;
     align-self: flex-end;
+    color: rgb(62, 131, 196);
 }
+
+
+.d-flex button:hover{
+    background-color: rgb(23, 124, 197);
+    color: white;
+    border-color: white;
+}
+
+.d-flex button{
+    border-color: gray;
+    color: gray;
+}
+
 
 #sideTab{
     top: 0%;
