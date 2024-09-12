@@ -7,6 +7,10 @@ import Modal from "react-bootstrap/Modal";
 import Nav_login from "./Navbar_login";
 
 function FormL() {
+  //Local stora que setea el valor del usuario a inactivo
+  let inactive=false;
+  sessionStorage.setItem("User", JSON.stringify(inactive));
+  
   //Hooks
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,7 +23,8 @@ function FormL() {
       (user) => user.email === email && user.password === password
     );
     if (user) {
-      navigate("/Home");
+      localStorage.setItem("User", JSON.stringify(user));
+      navigate("/Home")
     } else return setShowModal(true);
   };
   const [showModal, setShowModal] = useState(false);

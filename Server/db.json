@@ -7,30 +7,6 @@
       "email": "alejca15@gmail.com",
       "city": "Puntarenas",
       "phone": "61647912"
-    },
-    {
-      "id": "59a6",
-      "name": "Alejca",
-      "password": "1234",
-      "email": "alejca15@gmail.com",
-      "city": "Puntarenas",
-      "phone": "61647912"
-    },
-    {
-      "id": "59a6",
-      "name": "Fabio",
-      "password": "1234",
-      "email": "fabio@gmail.com",
-      "city": "Puntarenas",
-      "phone": "61647912"
-    },
-    {
-      "id": "59a6",
-      "name": "Nikki",
-      "password": "1234",
-      "email": "Nikki@gmail.com",
-      "city": "Puntarenas",
-      "phone": "61647912"
     }
   ],
   "products": [
@@ -39,6 +15,12 @@
       "name": "Palomitas de Mantequilla",
       "category": "Salados",
       "quantity": 1
+    },
+    {
+      "id": "I9B0",
+      "name": "Algodón de azúcar",
+      "category": "Dulces",
+      "quantity": 1
     }
   ],
   "car": [
@@ -46,6 +28,12 @@
       "id": "7435",
       "name": "Palomitas de Mantequilla",
       "category": "Salados",
+      "quantity": 1
+    },
+    {
+      "id": "I9B0",
+      "name": "Algodón de azúcar",
+      "category": "Dulces",
       "quantity": 1
     }
   ]
