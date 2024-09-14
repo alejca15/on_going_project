@@ -8,7 +8,7 @@ import Nav_login from "./Navbar_login";
 
 function FormL() {
   //Local stora que setea el valor del usuario a inactivo
-  let inactive=false;
+  let inactive=[];
   sessionStorage.setItem("User", JSON.stringify(inactive));
   
   //Hooks
@@ -23,7 +23,7 @@ function FormL() {
       (user) => user.email === email && user.password === password
     );
     if (user) {
-      localStorage.setItem("User", JSON.stringify(user));
+      sessionStorage.setItem("User", JSON.stringify(user));
       navigate("/Home")
     } else return setShowModal(true);
   };

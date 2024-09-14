@@ -7,20 +7,13 @@ import Card_home from "../Components/Cards";
 import getProducts from "../Services/getProducts"
 import { Checkout } from "../Components/Checkout";
 
+
 const Home = () => {
+  
 
   //Hooks
   const [display, setdisplay] = useState(true)
   const [products,setProducts]=useState([]);
-
-  //Local stora que setea el valor del usuario activo
-  //en un array vacio si el usuario no ha iniciado sesión
-  let inactive=false;
-  let is_user_active=JSON.parse(localStorage.getItem("User"));
- 
-  if (is_user_active==null||is_user_active==undefined) {
-    localStorage.setItem("User", JSON.stringify(inactive));
-  }
   
   let checkout_active=()=>{
     setdisplay(false)
