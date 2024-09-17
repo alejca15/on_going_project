@@ -4,10 +4,44 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import getCar from "../Services/getCar";
+import Car_card from "./Car";
+import Offcanvas from 'react-bootstrap/Offcanvas';
+import {useCallback,useState,useEffect } from "react";
 
 
-function Navigation_bar({Show,No_Show,Display}) {
+
+function Navigation_bar({checkout}) {
+  //Hooks
+  const [car, setCar] = useState([]);
+  const [show, setShow] = useState(false);
+
+  //Funciones que modifican los hooks
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  //Funcion que carga el carrito y lo actualiza
+
+  let load_car = useCallback(() => {
+    const fetch_Car = async () => {
+      try {
+        const response = await getCar();
+        setCar(response);
+      } catch (error) {
+        throw error;
+      }
+    };
+    fetch_Car();
+  });
+  useEffect(() => load_car(), [load_car]);
+
+  //Funcion que carga y muestra el carrito
+  let display_car = () => {
+    if (car!=[]) {
+      return car.map((item,index)=><Car_card product={item} key={index}/>)
+    }
+  };
+  
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
@@ -15,12 +49,12 @@ function Navigation_bar({Show,No_Show,Display}) {
         <Navbar.Brand
           style={{ fontSize: "xx-large", color: "rgb(237, 151, 165)" }}
         >
-          SweetThings
+          Cositas Ricas
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0 d-flex justify-content-between"style={{ Height: "100px"}} navbarScroll>
-            <Nav.Link id="nav_item" as={Link} to={"/"} style={{ textDecoration: "none", color: "rgb(119, 113, 113)" }}>
+            <Nav.Link id="nav_item" as={Link} to={"/Login"} style={{ textDecoration: "none", color: "rgb(119, 113, 113)" }}>
               Iniciar sesión
               </Nav.Link>
             <Nav.Link id="nav_item" as={Link} to={"/Register"}  style={{ textDecoration: "none", color: "rgb(119, 113, 113)" }}>
@@ -32,18 +66,19 @@ function Navigation_bar({Show,No_Show,Display}) {
             <Nav.Link id="nav_item" style={{ color: "rgb(119, 113, 113)" }}>
               Sobre Nosotros
             </Nav.Link>
-            <NavDropdown  title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
-            {Display?<Button variant="outline-success" id="checkout_btn_active" onClick={Show}>Checkout</Button>:<Button variant="outline-success" id="checkout_btn_inactive" onClick={No_Show}>Productos</Button>}
+            <Button variant="primary" id="car_btn" onClick={handleShow}>
+        Carrito
+      </Button>
+
+      <Offcanvas show={show} onHide={handleClose}>
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Carrito</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          {display_car()}
+          <Button variant="outline-success" id="checkout_btn_active" onClick={checkout}>Pagar</Button>
+        </Offcanvas.Body>
+      </Offcanvas>
           </Nav>
           <Form className="d-flex">
             <Form.Control

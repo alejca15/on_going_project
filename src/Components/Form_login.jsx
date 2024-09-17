@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import getUsers from "../Services/getUsers";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import Nav_login from "./Navbar_login";
 
@@ -24,7 +24,10 @@ function FormL() {
     );
     if (user) {
       sessionStorage.setItem("User", JSON.stringify(user));
-      navigate("/Home")
+      if (user.admin==true) {
+        return navigate("/Admin")
+      }
+      navigate("/")
     } else return setShowModal(true);
   };
   const [showModal, setShowModal] = useState(false);

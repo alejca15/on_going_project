@@ -6,7 +6,8 @@
       "password": "1234",
       "email": "alejca15@gmail.com",
       "city": "Puntarenas",
-      "phone": "61647912"
+      "phone": "61647912",
+      "admin":false
     }
   ],
   "products": [
@@ -25,16 +26,19 @@
   ],
   "car": [
     {
-      "id": "7435",
-      "name": "Palomitas de Mantequilla",
-      "category": "Salados",
-      "quantity": 1
-    },
+      "id": "I9B0",
+      "name": "Algodón de azúcar",
+      "category": "Dulces",
+      "quantity": 2
+    }
+  ],
+  "promotions": [
     {
       "id": "I9B0",
       "name": "Algodón de azúcar",
       "category": "Dulces",
-      "quantity": 1
+      "quantity": 2
     }
   ]
+
 }

@@ -31,8 +31,9 @@ let Car_card=({product})=>{
               bg={variant.toLowerCase()}
               key={variant}
               text={variant.toLowerCase() === 'light' ? 'dark' : 'white'}
-              style={{ width: '14.5rem' }}
+              style={{ width: '13.5rem' }}
               className="mb-2"
+              id='car_item'
             >
               <Card.Header id='car_btn_container'><button onClick={add_onclick}>+</button><button onClick={substract_onclick}>-</button><button id='removebtn' onClick={remove_onclick}>Elminar</button></Card.Header>
               <Card.Body>

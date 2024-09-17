@@ -19,7 +19,7 @@ function Card_home({ product }) {
   const handleCloseModal = () => {setShowModal(false)};
 
   const go_login=()=>{
-    navigate("/")
+    navigate("/Login")
   }
 
   //Funcion que refresca el hook

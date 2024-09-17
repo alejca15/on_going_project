@@ -1,7 +1,7 @@
 #register_cont {
   display: grid;
   grid-template: 20% 60% 20%/20% 60% 20%;
-  height: 633px;
+  height: 100vh;
 }
 #register_form {
   grid-column: 2;
