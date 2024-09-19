@@ -1,7 +1,7 @@
-let postProduct = async (product_data) => {
+let postOrder = async (product_data) => {
 
     try {
-        let response = await fetch("http://localhost:3001/products", {
+        let response = await fetch("http://localhost:3001/orders", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -14,4 +14,4 @@ let postProduct = async (product_data) => {
     }
 }
 
-export default postProduct;
+export default postOrder;

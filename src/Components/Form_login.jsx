@@ -2,9 +2,9 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import getUsers from "../Services/getUsers";
-import { Navigate, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
-import Nav_login from "./Navbar_login";
+import Secundary_nav from "./Secundary_nav";
 
 function FormL() {
   //Local stora que setea el valor del usuario a inactivo
@@ -35,7 +35,7 @@ function FormL() {
 
   return (
     <>
-    <div id="nav"><Nav_login/></div>
+    <div id="nav"><Secundary_nav/></div>
     
       {" "}
       <Form>

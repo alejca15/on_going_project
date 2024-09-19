@@ -1,6 +1,6 @@
 let deleteProduct = async (id) => {
     try {
-        let response = await fetch("http://localhost:3001/products" + id,
+        let response = await fetch("http://localhost:3001/products/" + id,
             {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' }

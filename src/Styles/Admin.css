@@ -1,11 +1,148 @@
-.admin_body{
-    width: 98%;
+#admin_body{
+    width: 100%;
     height: 100%;
     display: grid;
-    grid-template: 200px 1fr 100px/50px auto;
+    grid-template: 80px 1fr 20px/350px 1fr;
 }
 #nav_cont{
     grid-row: 1;
-    grid-row: 1/3;
-    background-color: blue;
+    grid-column: 1/4;
+    background-color: rgb(250, 250, 250);
 }
+
+#admin_main_cont{
+    grid-row: 2;
+    grid-column: 1/4;
+    min-height: 530px;
+    
+}
+
+#footer_cont{
+    grid-row: 3;
+    grid-column: 1/4;
+}
+#nav_opts{
+    width: 700px;
+    justify-content: space-around;
+    margin-bottom: -52px;
+}
+
+#nav_opt{
+    height: 35px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom: 1px solid rgb(185, 174, 174);
+}
+
+#nav_opt:hover{
+    background-color: rgb(233, 229, 229);
+}
+
+#admin_main_cont{
+    margin-bottom: 100px;
+    grid-row: 2;
+    grid-column: 2;
+    display: grid;
+    grid-template: auto auto auto/auto auto auto ;
+}
+
+#admin_card_body{
+    max-width: 90%;
+    height: 280px;
+    margin-left: 25px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+#side_tab_admin_main_cont{
+    grid-row: 2;
+    grid-column: 1;
+    background-color: rgb(250, 250, 250);
+    min-height: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+#form_admin{
+    display: flex;
+    justify-content: center;
+}
+#first_row{
+    display: grid;
+    grid-column: 1fr 1fr;
+}
+#upper_left{
+    margin-left: 10px;
+    width: 100%;
+    align-self: flex-end;
+    justify-self: center;
+    grid-column: 1;
+    margin-right: -10px;
+}
+#upper_right{
+    align-self: flex-end;
+    width: 100%;
+    justify-self: center;
+    grid-column: 2;
+    margin-left: -10px;
+}
+
+#second_row{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#category_mid{
+    width: 100%;
+    grid-column: 1;
+    justify-self: center;
+    text-align: center;
+    margin-right: -10px;
+}
+#quantity_mid{
+    grid-column: 2;
+    align-self: flex-end;
+    width: 85%;
+    justify-self: center;
+    margin-left: -10px;
+}
+
+#input_file{
+    display: flex;
+margin-left: 20px;
+    width: 90%;
+    justify-self: center;
+}
+
+#img_container{
+    margin-left: 15px;
+    margin-bottom: 15px;
+    width: 90%;
+    height: 240px;
+    border: 2px solid rgb(200, 196, 196);
+    align-content: center;
+    justify-content: center;
+}
+
+#card_body{
+    display: grid;
+    grid-template: 1fr/40% 60%;
+}
+
+#card_data{
+    grid-column: 1;
+}
+
+#container_img{
+    display: flex;
+    grid-column: 2;
+    justify-content: center;
+    width: 100%;
+}
+
+#image_card{
+    width: 160px;
+    height: 170px;
+}
+
+

@@ -1,27 +1,6 @@
 import Nav from "react-bootstrap/Nav";
-import { useCallback, useEffect, useState } from "react";
-import getCar from "../Services/getCar";
-import Car_card from "./Car";
 
 function Side_tab({everything,promotion,sweet,salty,item,theme,combo,animation,inflable,event}) {
-  const [car, setCar] = useState([]);
-  let load_car = useCallback(() => {
-    const fetch_Car = async () => {
-      try {
-        const response = await getCar();
-        setCar(response);
-      } catch (error) {
-        throw error;
-      }
-    };
-    fetch_Car();
-  });
-  useEffect(() => load_car(), [load_car]);
-  let display_car = () => {
-    if (car!=[]) {
-      return car.map((item,index)=><Car_card product={item} key={index}/>)
-    }
-  };
 
   return (
           <Nav defaultActiveKey="/home" className="flex-column">

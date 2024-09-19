@@ -1,7 +1,7 @@
 #footer{
     bottom: 0%;
     width: 100%;
-    height: 80px;
+    height: 130px;
     background-color: rgb(250, 250, 250);
     display: grid;
     grid-template: 95% 5% / 20% 60% 20%;
@@ -19,9 +19,17 @@
     justify-self: center;
     align-self: center;
 }
+#code_logo img{
+    width: 125px;
+    height: 40px;
+}
 #logo{
     grid-row: 1;
     grid-column: 1;
     justify-self: center;
     align-self: center;
+}
+
+#logo img{
+    height: 130px;
 }

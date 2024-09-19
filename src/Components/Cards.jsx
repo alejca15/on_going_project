@@ -1,6 +1,5 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import pic from "../Assets/Popcorn.jpg";
 import postCar from "../Services/postCar";
 import { useCallback, useEffect, useState } from "react";
 import getCar from "../Services/getCar";
@@ -18,6 +17,7 @@ function Card_home({ product }) {
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => {setShowModal(false)};
 
+  //Funcion que lleva al Login
   const go_login=()=>{
     navigate("/Login")
   }
@@ -35,9 +35,7 @@ function Card_home({ product }) {
   useEffect(() => {refreshCar();}, [refreshCar]);
 
   //Funcion que añade al carrito y si ya existe el articulo le suma a la cantidad
-  let handleClick = async() => {
-    console.log(is_user_active);
-    
+  let handleClick = async() => {   
     if (is_user_active=="false"||is_user_active==""||is_user_active==null||is_user_active==undefined||is_user_active==[]) {
       return setShowModal(true)
     }
@@ -56,15 +54,16 @@ function Card_home({ product }) {
   }
 }
 
-
   //Return que crea el html
   return (
     <div id="cards_cont">
-      <Card style={{ width: "18rem", height: "100px" }}>
-        <Card.Img variant="top" src={pic} height={"200px"} width={"150px"} />
-        <Card.Body>
+      <div id="main_card_cont">
+      <Card id="card" style={{ width: "18rem", height: "100px" }}>
+        <Card.Img id="image_card_home" variant="top" src={product.img} />
+        <Card.Body id="main_card" >
           <Card.Title>{product.name}</Card.Title>
-          <Card.Text>{product.category}</Card.Text>
+          <Card.Text>Cantidad: {product.quantity} | Precio: {product.price} </Card.Text>
+          <Card.Text>Categoría: {product.category} </Card.Text>
           <Button
             variant="primary"
             onClick={handleClick}
@@ -77,6 +76,8 @@ function Card_home({ product }) {
           </Button>
         </Card.Body>
       </Card>
+      </div>
+      
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
           <Modal.Title>Para poder ingresar al carrito, primero inicie sesión</Modal.Title>
