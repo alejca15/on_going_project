@@ -21,3 +21,9 @@
   grid-row: 1;
   grid-column: 1/4;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

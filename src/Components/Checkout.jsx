@@ -7,7 +7,7 @@ import * as formik from "formik";
 import * as yup from "yup";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import getCar from "../Services/getCar";
-import { useRef,useState } from "react";
+import { useEffect,useRef,useState } from "react";
 import postOrder from "../Services/postOrder";
 import Modal from "react-bootstrap/Modal";
 import getOrders from "../Services/getOrders";
@@ -51,6 +51,10 @@ function Checkout({Done}) {
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () =>{ setShowModal(false); clear_car(); return Done()};
 
+  //Hook que modifica el modal de validacion 
+  const [showValidationModal, setShowValidationModal] = useState(false);
+  const handleCloseValidationModal = () =>{ setShowValidationModal(false);};
+
   const schema = yup.object().shape({
     firstName: yup.string().required(),
     lastName: yup.string().required(),
@@ -63,6 +67,8 @@ function Checkout({Done}) {
       .required()
       .oneOf([true], "Los terminos deben ser aceptados"),
   });
+
+
   //Funcion que toma los datos del los hooks y hace el post de pedido con su respectivo carrito
   const order = async (event) => {
     event.preventDefault();
@@ -77,17 +83,23 @@ function Checkout({Done}) {
       address,
       zip,
       comments,
+      state:"Pending",
       car,
     };
-    if (name !== "" && lastname !== "" && phone !== "" && mail !== "" && province !== "" && canton !== "" && address !== "" && car.length > 0) {
+    if (name !== "" && lastname !== "" && phone !== "" && mail !== "" && province !== "" && canton !== "" && address !== ""&& car.length>0) {
       await postOrder(order_data)
       const id= await getId()
       setorderId(id)
       setShowModal(true)
       sendEmail()
     }
+    else{
+      setShowValidationModal(true)
+    }
   };
 
+
+  //Obtiene el ID de la ultima orden que fue puesta
   const getId = async () => {
     let orders = await getOrders();
     let lastIndex = orders.length - 1;
@@ -95,11 +107,31 @@ function Checkout({Done}) {
     return lastOrder.id;
   };
 
+  //Funcion que limpia el carrito con el id pasado de la funcion anterior
   const clear_car=async()=>{
     let shopping_car=await getCar();
     shopping_car.map((item)=>{deleteCar(item.id)})
   }
 
+  //Obtiene el dato del usuario que inicio session desde el Session Storage
+  const is_user_active = JSON.parse(sessionStorage.getItem("User"));
+
+  //UseEffect para inicializar los valores del formulario
+  useEffect(() => {
+    const user = JSON.parse(sessionStorage.getItem("User"));
+    if (user) {
+      setname(user.name || "");
+      setlastname(user.lastname || "");
+      setphone(user.phone || "");
+      setmail(user.email || "");
+      setprovince(user.city || "");
+      setcanton(user.city || "");
+      setaddress(user.city || "");
+      setzip(user.zip || "");
+    }
+  }, []);
+
+  
   return (
     <div id="checkout_form">
       <Formik
@@ -125,6 +157,7 @@ function Checkout({Done}) {
                 <Form.Control
                   type="text"
                   name="firstName"
+                  defaultValue={is_user_active.name}
                   onChange={(e) => setname(e.target.value)}
                   isValid={touched.firstName && !errors.firstName}
                 />
@@ -138,7 +171,6 @@ function Checkout({Done}) {
                   onChange={(e) => setlastname(e.target.value)}
                   isValid={touched.lastName && !errors.lastName}
                 />
-
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
               <Form.Group as={Col} md="4" controlId="validationFormikUsername">
@@ -146,10 +178,12 @@ function Checkout({Done}) {
                 <InputGroup hasValidation>
                   <InputGroup.Text id="inputGroupPrepend">#</InputGroup.Text>
                   <Form.Control
-                    type="text"
+                    type="number"
+                    min="0"
                     placeholder="Numero de contacto"
                     aria-describedby="inputGroupPrepend"
                     name="phone"
+                    defaultValue={is_user_active.phone}
                     onChange={(e) => setphone(e.target.value)}
                     isInvalid={!!errors.username}
                   />
@@ -166,6 +200,7 @@ function Checkout({Done}) {
                   <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
                   <Form.Control
                     type="text"
+                    defaultValue={is_user_active.email}
                     placeholder="Correo"
                     aria-describedby="inputGroupPrepend"
                     name="mail"
@@ -173,7 +208,7 @@ function Checkout({Done}) {
                     isInvalid={!!errors.username}
                   />
                   <Form.Control.Feedback type="invalid">
-                    Ingrese un nombre de usuario
+                    Ingrese un correo válido
                   </Form.Control.Feedback>
                 </InputGroup>
               </Form.Group>
@@ -181,6 +216,7 @@ function Checkout({Done}) {
                 <Form.Label>Provincia</Form.Label>
                 <Form.Control
                   type="text"
+                  defaultValue={is_user_active.city}
                   placeholder="Provincia"
                   name="province"
                   onChange={(e) => setprovince(e.target.value)}
@@ -276,6 +312,17 @@ function Checkout({Done}) {
         <Modal.Body>Numero de orden: {orderId ? orderId.toUpperCase() : ''}</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseModal}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      <Modal show={showValidationModal} onHide={handleCloseValidationModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Faltan datos por llenar</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Revise los datos ingresados</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseValidationModal}>
             Cerrar
           </Button>
         </Modal.Footer>

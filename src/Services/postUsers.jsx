@@ -4,7 +4,8 @@ export default async function postUsers(name,password,email,city,phone){
         password,
         email,
         city,
-        phone
+        phone,
+        admin:false
     }
     try {
         let response=await fetch("http://localhost:3001/users",{

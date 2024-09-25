@@ -43,11 +43,11 @@
   grid-row: 2;
   grid-column: 2/4;
   justify-content: space-around;
-  height: auto;
+  padding-bottom: 120px;
 }
 #cards_cont {
-  margin-bottom: 200px;
-  margin-top: 30px;
+  margin-bottom: 40px;
+  margin-top: 20px;
 }
 
 #car_cont {
@@ -73,7 +73,7 @@
 }
 
 #car_btn {
-  margin-left: 75%;
+  margin-left: 90%;
   margin-right: 10px;
   background-color: rgb(53, 53, 207);
   color: white;
@@ -123,4 +123,10 @@
 
 #image_card_home{
   height: 240px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

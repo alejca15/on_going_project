@@ -1,6 +1,6 @@
 import Nav from "react-bootstrap/Nav";
 
-function Side_tab({everything,promotion,sweet,salty,item,theme,combo,animation,inflable,event}) {
+function Side_tab({everything,promotion,sweet,salty,item,combo,animation,inflable,event}) {
 
   return (
           <Nav defaultActiveKey="/home" className="flex-column">
@@ -21,9 +21,6 @@ function Side_tab({everything,promotion,sweet,salty,item,theme,combo,animation,i
             </Nav.Link>
             <Nav.Link id="side_tab_item" onClick={item} style={{ color: "rgb(119, 113, 113)" }} eventKey="link-3">
               Recuerdos
-            </Nav.Link>
-            <Nav.Link id="side_tab_item" onClick={theme} style={{ color: "rgb(119, 113, 113)" }} eventKey="link-4">
-              Tematicas
             </Nav.Link>
             <Nav.Link id="side_tab_item" onClick={combo} style={{ color: "rgb(119, 113, 113)" }} eventKey="link-5">
               Combos

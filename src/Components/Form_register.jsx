@@ -7,8 +7,13 @@ import Row from "react-bootstrap/Row";
 import Modal from "react-bootstrap/Modal";
 import postUsers from "../Services/postUsers";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 function Form_register() {
+  //Toastify
+  const notify = () => toast("El Usuario ha sido registrado");
+
+  //Hooks
   const [validated, setValidated] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
@@ -46,7 +51,10 @@ function Form_register() {
     } else {
       if (password == second_password) {
         postUsers(name, password, email, city, phone);
-        navigate("/");
+        notify();
+        setTimeout(() => {
+          navigate("/Login");
+        }, 5000);
       } else setShowModal2(true);
     }
   };
@@ -124,7 +132,8 @@ function Form_register() {
               <InputGroup.Text id="inputGroupPrepend">#</InputGroup.Text>
               <Form.Control
                 onChange={(e) => setPhone(e.target.value)}
-                type="text"
+                type="number"
+                min="0"
                 placeholder="Contacto.."
                 aria-describedby="inputGroupPrepend"
                 required
@@ -147,6 +156,7 @@ function Form_register() {
         <Button type="button" onClick={handleClick}>
           Registrar Usuario
         </Button>
+        <ToastContainer />
       </Form>
 
       <Modal show={showModal} onHide={handleCloseModal}>

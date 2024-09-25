@@ -10,7 +10,14 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { useCallback, useState, useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
 
-function Navigation_bar({ checkout }) {
+function Navigation_bar({ data,checkout }) {
+
+  const set_data = (e) => {
+    const newFilterData = e.target.value; 
+    data(newFilterData); 
+  };
+
+  
   //Dato traido del session storage para validar si un usuario a iniciado sesion
   const is_user_active = JSON.parse(sessionStorage.getItem("User"));
   //Hooks
@@ -133,10 +140,8 @@ function Navigation_bar({ checkout }) {
               placeholder="Buscar.."
               className="me-2"
               aria-label="Search"
+              onChange={(e)=>set_data(e)}
             />
-            <Button variant="outline-success" id="navbarBtn">
-              Buscar
-            </Button>
           </Form>
         </Navbar.Collapse>
       </Container>
